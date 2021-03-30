@@ -35,17 +35,19 @@ var createNewTaskElement=function(taskString){
   listItem.className = "task-item"
 
   label.innerText=taskString;
-  label.className='task';
+  label.className='task-item__name task';
 
   //Each elements, needs appending
   checkBox.type="checkbox";
+  checkBox.className="task-item__checkbox"
   editInput.type="text";
-  editInput.className="input-text task";
+  editInput.className="task-item__input input-text task";
 
   editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-  editButton.className="edit";
+  editButton.className="task-item__edit edit";
 
-  deleteButton.className="delete";
+  deleteButton.className="task-item__delete delete";
+  deleteButtonImg.className ="task-item__delete-icon"
   deleteButtonImg.src='./remove.svg';
   deleteButtonImg.alt = "remmove-icon"
   deleteButton.appendChild(deleteButtonImg);
@@ -88,11 +90,11 @@ var editTask=function(){
   var editInput=listItem.querySelector('input[type=text]');
   var label=listItem.querySelector("label");
   var editBtn=listItem.querySelector(".edit");
-  var containsClass=listItem.classList.contains("edit-task");
-  //If class of the parent is .edit-task
+  var containsClass=listItem.classList.contains("task-item--edit");
+  //If class of the parent is .task-item--edit
   if(containsClass){
 
-      //switch to .edit-task
+      //switch to .task-item--edit
       //label becomes the inputs value.
       label.innerText=editInput.value;
       editBtn.innerText="Edit";
@@ -101,8 +103,8 @@ var editTask=function(){
       editBtn.innerText="Save";
   }
 
-  //toggle .edit-task on the parent.
-  listItem.classList.toggle("edit-task");
+  //toggle .task-item--edit on the parent.
+  listItem.classList.toggle("task-item--edit");
 };
 
 
